@@ -1,0 +1,11 @@
+{
+  "title": "Books list",
+  "list": {
+    "title": "Title",
+    "isbn": "ISBN",
+    "release": "Release Date",
+    "price": "Price",
+    "pages": "Pages",
+    "pagesValue": "{{pages}} pages"
+  }
+}

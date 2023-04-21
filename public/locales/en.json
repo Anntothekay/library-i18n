@@ -1,11 +1,16 @@
 {
   "title": "Books list",
+  "filter": "Filter: ",
+  "filterResults_one": "found {{count}} book",
+  "filterResults_other": "found {{count}} books",
   "list": {
     "title": "Title",
     "isbn": "ISBN",
-    "release": "Release Date",
+    "release": "Release",
     "price": "Price",
     "pages": "Pages",
-    "pagesValue": "{{pages}} pages"
+    "pagesValue": "{{pages}} pages",
+    "priceValue": "{{price, currency(EUR)}}",
+    "releaseValue": "{{release, datetime}}"
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const books = [
@@ -29,10 +29,27 @@ const books = [
 ];
 
 const List: React.FC = () => {
+  const [filter, setFilter] = useState('');
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(filter.toLowerCase())
+  );
+
   const { t } = useTranslation();
   return (
     <>
       <h1>{t('title')}</h1>
+
+      <div>
+        {t('filter')}
+        <input
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+        {t('filterResults', { count: filteredBooks.length })}
+      </div>
+
       <table>
         <thead>
           <tr>
@@ -44,12 +61,23 @@ const List: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <tr key={book.id}>
               <td>{book.title}</td>
               <td>{book.isbn}</td>
-              <td>{book.release}</td>
-              <td>{book.price}</td>
+              <td>
+                {t('list.releaseValue', {
+                  release: new Date(book.release),
+                  formatParams: {
+                    release: {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                    },
+                  },
+                })}
+              </td>
+              <td>{t('list.priceValue', { price: book.price })}</td>
               <td>{t('list.pagesValue', { pages: book.pages })}</td>
             </tr>
           ))}
